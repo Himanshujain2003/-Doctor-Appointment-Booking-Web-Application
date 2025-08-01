@@ -4,13 +4,13 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# app.secret_key = 'rushi'
+
 
 app.config['SQLALCHEMY_DATABASE_URI']="sqlite:///DATA.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db=SQLAlchemy(app)
 
-class webmedconsultmaster(db.Model):
+class webhealthconsultdb(db.Model):
     sno = db.Column(db.Integer, primary_key=True)   
     name = db.Column(db.String(80), nullable=False)
     phone = db.Column(db.Integer, nullable=False)
@@ -44,14 +44,13 @@ class Contact(db.Model):
 
 @app.route('/')
 def hello_world():
-    # return 'Hello, World!'
     return render_template('index.html')
 
 @app.route('/contact', methods=["GET", "POST"])
 def contact():
-    # return 'Hello, World!'
+    
     if request.method == 'POST':
-        # gender = request.form['gender']
+        
         name = request.form['name']
         email = request.form['email']
         message = request.form['message']
@@ -65,7 +64,7 @@ def contact():
 def form():
     print("inside function")
     if request.method == 'POST':
-        # gender = request.form['gender']
+        
         name = request.form['name']
         phone = request.form['phone']
         email = request.form['email']
@@ -78,7 +77,7 @@ def form():
         Weight = request.form['Weight']
         bloodgroup = request.form['bloodgroup']
         print("Entered in loop")
-        rusih = webmedconsultmaster(name=name, phone=phone, email=email, Age=Age, gender=gender, height=height, Weight=Weight, bloodgroup=bloodgroup)
+        rusih = webhealthconsultmaster(name=name, phone=phone, email=email, Age=Age, gender=gender, height=height, Weight=Weight, bloodgroup=bloodgroup)
         db.session.add(rusih)
         # db.session.commit()   
         print("Executed")
@@ -90,8 +89,7 @@ def form():
 
 @app.route('/login')
 def login():
-    # return 'Hello, World!'
-    # if request.method == "POST":
+
         
 
     return render_template('login.html')
@@ -99,12 +97,12 @@ def login():
 
 @app.route('/videocall')
 def videocall():
-    # return 'Hello, World!'
+    
     return render_template('videocall.html')
 
 @app.route('/doctinfo1')
 def doctinfo1():
-    # return 'Hello, World!'
+   
     return render_template('doctinfo1.html')
 
 @app.route('/doctinfo2')
@@ -130,19 +128,21 @@ def gmeet():
 @app.route('/appoinment', methods=["GET", "POST"])
 def appoinment():
     if request.method == 'POST':
-        # gender = request.form['gender']
+        
         appoinmentname = request.form['appoinmentname']
         email = request.form['email']
         doctor = request.form['doctor']
         message = request.form['message']
         bookappoinment = Appoinment(appoinmentname=appoinmentname, email=email, doctor=doctor, message=message)
         db.session.add(bookappoinment)
-        # db.session.commit()   
+           
         print("Executed")
         db.session.commit()
         return render_template('return2.html')
-    # return 'Hello, World!'
+    
     return render_template('appoinment.html')
 
-if __name__ =="__main__":
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)

@@ -25,12 +25,10 @@ function sendMessage() {
   }
   
   function generateBotReply(userInput) {
-    // Replace this with your own logic to generate appropriate bot replies
     var botReply = "I'm sorry, I cannot process your request at the moment.";
     
     appendBotMessage(botReply);
     
-    // Scroll to the bottom of the chat container to show the latest message
     var chatContainer = document.querySelector('.chatbot-container');
     chatContainer.scrollTop = chatContainer.scrollHeight;
   }

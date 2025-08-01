@@ -29,6 +29,10 @@
     function addLink() {
       var name = document.getElementById('name-input').value;
       var gmeetLink = 'https://meet.google.com/zoa-shqt-kmm'; 
+      if (name === '') {
+        alert('Please enter your name.');
+        return;
+      }
 
       var message = document.createElement('p');
       message.textContent = 'Join the meeting, ' + name + '! ' + gmeetLink;
