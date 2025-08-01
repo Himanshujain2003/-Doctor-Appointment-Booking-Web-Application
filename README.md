@@ -17,13 +17,12 @@ This is a web application that allows users to book appointments with doctors, c
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Rushi128/doctor-appointment-webapp.git
-   ```
+https://github.com/Himanshujain2003/-Doctor-Appointment-Booking-Web-Application.git   ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd doctor-appointment-webapp
+  Doctor-Appointment-Booking-Web-Applicatio
    ```
 
 3. Install dependencies:
